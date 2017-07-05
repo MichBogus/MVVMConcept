@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    def rootConfiguration = rootProject.ext
+
+    defaultConfig {
+        applicationId globalConfiguration.getAt("application_id")
+        minSdkVersion globalConfiguration.getAt("min_sdk_version")
+        targetSdkVersion globalConfiguration.getAt("target_sdk_version")
+        versionCode globalConfiguration.getAt("version_code")
+        versionName globalConfiguration.getAt("version_name")
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile appDependencies.supportAppCompat
+    compile appDependencies.supportCore
+    compile appDependencies.supportDesign
+    compile appDependencies.constraintLayout
+}
