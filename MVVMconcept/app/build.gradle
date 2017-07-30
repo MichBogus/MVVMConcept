@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -27,6 +30,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
 }
 
 dependencies {
@@ -34,9 +46,30 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    kapt appDependencies.daggerCompiler
 
     compile appDependencies.supportAppCompat
     compile appDependencies.supportCore
     compile appDependencies.supportDesign
     compile appDependencies.constraintLayout
+
+    compile appDependencies.kotlin
+    compile appDependencies.dagger
+
+    compile appDependencies.rxjava
+    compile appDependencies.rxandroid
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.mockito
+    testCompile(testDependencies.mockitoKotlin) {
+        exclude module: 'org.mockito'
+    }
+    testCompile testDependencies.assertJ
+    testCompile(testDependencies.assertJAndroid) {
+        exclude group: 'com.android.support'
+    }
+}
+
+kapt {
+    generateStubs = true
 }
