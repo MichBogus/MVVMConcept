@@ -47,6 +47,7 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     kapt appDependencies.daggerCompiler
+    kapt 'com.android.databinding:compiler:2.3.1'
 
     compile appDependencies.supportAppCompat
     compile appDependencies.supportCore
