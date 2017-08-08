@@ -11,15 +11,15 @@ android {
         abortOnError false
     }
 
-    def globalConfiguration = rootProject.extensions.getByName("ext")
+    def projectConfiguration = rootProject.extensions.getByName("ext")
     def rootConfiguration = rootProject.ext
 
     defaultConfig {
-        applicationId globalConfiguration.getAt("application_id")
-        minSdkVersion globalConfiguration.getAt("min_sdk_version")
-        targetSdkVersion globalConfiguration.getAt("target_sdk_version")
-        versionCode globalConfiguration.getAt("version_code")
-        versionName globalConfiguration.getAt("version_name")
+        applicationId projectConfiguration.getAt("application_id")
+        minSdkVersion projectConfiguration.getAt("min_sdk_version")
+        targetSdkVersion projectConfiguration.getAt("target_sdk_version")
+        versionCode projectConfiguration.getAt("version_code")
+        versionName projectConfiguration.getAt("version_name")
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
