@@ -6,17 +6,17 @@ import com.mvvmconcept.base.BaseModel
 
 class WeatherModel : BaseModel() {
 
-    var location: String
+    var location: String = ""
         set(value) {
-            location = value
+            field = value
             notifyPropertyChanged(BR.location)
         }
-        @Bindable get() = location
+        @Bindable get
 
-    var locationTemperature: String
+    var locationTemperature: String = ""
         set(value) {
-            locationTemperature = value
+            field = value
             notifyPropertyChanged(BR.locationTemperature)
         }
-        @Bindable get() = locationTemperature
+        @Bindable get
 }

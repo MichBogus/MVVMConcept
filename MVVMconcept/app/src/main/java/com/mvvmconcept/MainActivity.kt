@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.mvvmconcept.base.BaseActivity
 import com.mvvmconcept.databinding.ActivityMainBinding
+import com.mvvmconcept.mvvm.mainactivity.WeatherController
 import com.mvvmconcept.mvvm.mainactivity.WeatherModel
 
 class MainActivity : BaseActivity() {
@@ -16,5 +17,7 @@ class MainActivity : BaseActivity() {
             location = "a"
             locationTemperature = "20"
         }
+
+        binding.controller = WeatherController()
     }
 }
