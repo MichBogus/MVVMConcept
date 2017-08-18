@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'de.mobilej.unmock'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    def projectConfiguration = rootProject.extensions.getByName("ext")
+    def rootConfiguration = rootProject.ext
+
+    defaultConfig {
+        applicationId projectConfiguration.getAt("application_id")
+        minSdkVersion projectConfiguration.getAt("min_sdk_version")
+        targetSdkVersion projectConfiguration.getAt("target_sdk_version")
+        versionCode projectConfiguration.getAt("version_code")
+        versionName projectConfiguration.getAt("version_name")
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+
+unMock {
+    keep "android.os.Bundle"
+}
+
+dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    kapt appDependencies.daggerCompiler
+    kapt 'com.android.databinding:compiler:2.3.1'
+
+    compile appDependencies.supportAppCompat
+    compile appDependencies.supportCore
+    compile appDependencies.supportDesign
+    compile appDependencies.constraintLayout
+    compile appDependencies.multidex
+
+    compile appDependencies.kotlin
+    compile appDependencies.dagger
+
+    compile appDependencies.rxjava
+    compile appDependencies.rxandroid
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.mockito
+    testCompile(testDependencies.mockitoKotlin) {
+        exclude module: 'org.mockito'
+    }
+    testCompile testDependencies.assertJ
+    testCompile(testDependencies.assertJAndroid) {
+        exclude group: 'com.android.support'
+    }
+}
+
+kapt {
+    generateStubs = true
+}
