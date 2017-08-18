@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'de.mobilej.unmock'
 
 android {
     compileSdkVersion 25
@@ -39,6 +40,10 @@ android {
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
     }
+}
+
+unMock {
+    keep "android.os.Bundle"
 }
 
 dependencies {

@@ -5,13 +5,13 @@ import android.databinding.ViewDataBinding
 
 abstract class BaseBinder<in T : BaseActivity, in G : ViewDataBinding> {
 
-    var activityBinding: ViewDataBinding? = null
+    protected var activityBinding: ViewDataBinding? = null
 
-    fun attachBinding(activity: T, layout: Int) {
+    open fun attachBinding(activity: T, layout: Int) {
         activityBinding = setContentView<G>(activity, layout)
     }
 
-    fun detachBinding() {
+    open fun detachBinding() {
         activityBinding = null
     }
 }

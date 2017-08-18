@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:onClick="@{(v) -> controller.onRollButtonClickListener(v, weather)}"
+            android:onClick="@{() -> controller.onRollButtonClickListener(weather)}"
             android:id="@+id/button_roll"
             android:text="click"
             android:layout_width="100dp"
