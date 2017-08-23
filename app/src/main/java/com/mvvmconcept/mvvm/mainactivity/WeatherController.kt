@@ -1,11 +1,23 @@
 package com.mvvmconcept.mvvm.mainactivity
 
-import com.mvvmconcept.base.BaseController
+import android.databinding.BindingAdapter
+import android.databinding.DataBindingComponent
+import android.widget.EditText
 
-open class WeatherController : BaseController() {
+open class WeatherController : DataBindingComponent {
 
-    fun onRollButtonClickListener(model: WeatherModel) {
-        model.location = "aaa"
-        model.locationTemperature = "222222222"
+    override fun getCompanion(): Companion = this.companion
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("textChangedListener")
+        fun addTextChangedListener(editText: EditText, controller: WeatherController) {
+            val test = ""
+        }
+    }
+
+    fun onRollButtonClickListener(locationModel: WeatherLocationModel) {
+        locationModel.cityName = "aaa"
+        locationModel.countryCode = "222222222"
     }
 }

@@ -1,6 +1,6 @@
 package com.mvvmconcept.injection;
 
-import com.mvvmconcept.MainActivity;
+import com.mvvmconcept.TemperatureActivity;
 import com.mvvmconcept.base.BaseActivity;
 import com.mvvmconcept.injection.modules.BinderModule;
 import com.mvvmconcept.injection.modules.DataBindingModule;
@@ -13,5 +13,5 @@ import dagger.Component;
 @Component(modules = {DataBindingModule.class, BinderModule.class})
 public interface InjectionComponent {
     void inject(BaseActivity baseActivity);
-    void inject(MainActivity mainActivity);
+    void inject(TemperatureActivity temperatureActivity);
 }
