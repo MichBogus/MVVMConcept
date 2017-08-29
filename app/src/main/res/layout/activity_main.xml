@@ -25,7 +25,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:textChangedListener='@{controller}' />
+            app:textChangedListener='@{true}' />
 
         <TextView
             android:id="@+id/city_temperature"
