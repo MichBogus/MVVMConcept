@@ -48,6 +48,7 @@ unMock {
 
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
+    def apiDependencies = rootProject.ext.apiDependencies
     def testDependencies = rootProject.ext.testDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -65,6 +66,10 @@ dependencies {
 
     compile appDependencies.rxjava
     compile appDependencies.rxandroid
+    compile apiDependencies.retrofit
+    compile apiDependencies.retrofitRx
+    compile apiDependencies.gson
+    compile apiDependencies.okhttp
 
     testCompile testDependencies.junit
     testCompile testDependencies.mockito

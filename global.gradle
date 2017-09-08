@@ -32,7 +32,7 @@ ext {
 
     apiDependencies = [
             retrofit                : "com.squareup.retrofit2:retrofit:$retrofit_version",
-            retrofitRx              : "com.squareup.retrofit2:adapter-rxjava:$retrofit_version",
+            retrofitRx              : "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version",
             gson                    : "com.squareup.retrofit2:converter-gson:$retrofit_version",
             okhttp                  : "com.squareup.okhttp3:okhttp:$ok_http_version",
     ]
