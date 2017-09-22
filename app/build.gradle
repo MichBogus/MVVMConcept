@@ -66,10 +66,12 @@ dependencies {
 
     compile appDependencies.rxjava
     compile appDependencies.rxandroid
+
     compile apiDependencies.retrofit
     compile apiDependencies.retrofitRx
     compile apiDependencies.gson
     compile apiDependencies.okhttp
+    compile apiDependencies.interceptor
 
     testCompile testDependencies.junit
     testCompile testDependencies.mockito

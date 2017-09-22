@@ -17,6 +17,12 @@ class TemperatureActivityBinder(val weatherLocationModel: WeatherLocationModel,
         (activityBinding as ActivityMainBinding).weather = weatherLocationModel
     }
 
+    override fun detachBinding() {
+        super.detachBinding()
+
+        weatherController.disposeConnections()
+    }
+
     override fun onSaveState(bundle: Bundle?) {
         weatherLocationModel.onSaveState(bundle)
     }

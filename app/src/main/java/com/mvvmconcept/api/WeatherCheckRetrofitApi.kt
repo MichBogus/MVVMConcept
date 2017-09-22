@@ -7,6 +7,6 @@ import retrofit2.http.Query
 interface WeatherCheckRetrofitApi {
 
     @GET("weather")
-    fun getWeatherForCity(@Query("q") cityName: String): Single<Object>
+    fun getWeatherForCity(@Query("q") cityName: String): Single<Any>
 
 }

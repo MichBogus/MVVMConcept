@@ -31,7 +31,7 @@ open class WeatherController(val scheduler: NetworkSchedulerApi,
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (count > CITY_MINIMUM_CHAR_LENGHT) {
+                    if (s?.length!! >= CITY_MINIMUM_CHAR_LENGHT) {
                         controller.downloadProperWeatherForLocation(s.toString())
                     }
                 }
@@ -39,14 +39,19 @@ open class WeatherController(val scheduler: NetworkSchedulerApi,
         }
     }
 
-    private fun downloadProperWeatherForLocation(cityName: String) {
+    fun disposeConnections() {
+        scheduler.dispose(this)
+    }
+
+    fun downloadProperWeatherForLocation(cityName: String) {
         scheduler.schedule(weatherCheckApi.getWeatherForCity(cityName),
                 Consumer {
-
+                    val check = 0
                 },
                 Consumer {
-
-                })
+                    val check = 0
+                },
+                this)
     }
 
     fun onRollButtonClickListener(locationModel: WeatherLocationModel) {

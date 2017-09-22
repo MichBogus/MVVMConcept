@@ -6,5 +6,6 @@ import io.reactivex.functions.Consumer
 
 interface NetworkSchedulerApi {
 
-    fun <T> schedule(single: Single<T>, onSuccess: Consumer<T>, onFail: Consumer<Throwable>)
+    fun <T> schedule(single: Single<T>, onSuccess: Consumer<T>, onFail: Consumer<Throwable>, tag: Any)
+    fun dispose(tag: Any)
 }
