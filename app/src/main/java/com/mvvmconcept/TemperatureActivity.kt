@@ -3,13 +3,13 @@ package com.mvvmconcept
 import android.os.Bundle
 import com.mvvmconcept.application.MVVMApplication
 import com.mvvmconcept.base.BaseActivity
-import com.mvvmconcept.mvvm.mainactivity.MainActivityBinder
+import com.mvvmconcept.mvvm.mainactivity.TemperatureActivityBinder
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class TemperatureActivity : BaseActivity() {
 
     @Inject
-    lateinit var mainActivityBinder: MainActivityBinder
+    lateinit var temperatureActivityBinder: TemperatureActivityBinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,21 +18,21 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        mainActivityBinder.attachBinding(this, R.layout.activity_main)
+        temperatureActivityBinder.attachBinding(this, R.layout.activity_main)
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        mainActivityBinder.onSaveState(outState)
+        temperatureActivityBinder.onSaveState(outState)
     }
 
     override fun onPause() {
         super.onPause()
-        mainActivityBinder.detachBinding()
+        temperatureActivityBinder.detachBinding()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        mainActivityBinder.onRestoreState(savedInstanceState)
+        temperatureActivityBinder.onRestoreState(savedInstanceState)
         super.onRestoreInstanceState(savedInstanceState)
     }
 }

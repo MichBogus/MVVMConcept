@@ -5,7 +5,8 @@ import com.mvvmconcept.injection.DaggerInjectionComponent
 import com.mvvmconcept.injection.InjectionComponent
 import com.mvvmconcept.injection.modules.BinderModule
 import com.mvvmconcept.injection.modules.DataBindingModule
-
+import com.mvvmconcept.injection.modules.NetworkModule
+import com.mvvmconcept.injection.modules.ServicesModule
 
 class MVVMApplication : MultiDexApplication() {
 
@@ -21,6 +22,8 @@ class MVVMApplication : MultiDexApplication() {
         injector = DaggerInjectionComponent.builder()
                 .binderModule(BinderModule())
                 .dataBindingModule(DataBindingModule())
+                .networkModule(NetworkModule())
+                .servicesModule(ServicesModule())
                 .build()
     }
 }

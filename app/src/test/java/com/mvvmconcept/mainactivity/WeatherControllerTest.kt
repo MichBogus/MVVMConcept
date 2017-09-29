@@ -1,7 +1,9 @@
 package com.mvvmconcept.mainactivity
 
+import com.mvvmconcept.api.WeatherCheckApi
+import com.mvvmconcept.base.network.NetworkSchedulerApi
 import com.mvvmconcept.mvvm.mainactivity.WeatherController
-import com.mvvmconcept.mvvm.mainactivity.WeatherModel
+import com.mvvmconcept.mvvm.mainactivity.WeatherLocationModel
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.spy
 import org.assertj.core.api.Assertions.assertThat
@@ -12,18 +14,20 @@ class WeatherControllerTest {
 
     lateinit var systemUnderTest: WeatherController
 
-    var mockOfWeatherModel = mock<WeatherModel>()
+    var mockOfWeatherModel = mock<WeatherLocationModel>()
+    var mockOfWearcherCheckApi = mock<WeatherCheckApi>()
+    var mockOfScheduler = mock<NetworkSchedulerApi>()
 
     @Before
     fun setUp() {
-        systemUnderTest = spy(WeatherController())
+        systemUnderTest = spy(WeatherController(mockOfScheduler, mockOfWearcherCheckApi))
     }
 
     @Test
     fun shouldPassProperDataAfterRollButtonClick() {
         systemUnderTest.onRollButtonClickListener(mockOfWeatherModel)
 
-        assertThat(mockOfWeatherModel.location).isEqualTo("aaa")
-        assertThat(mockOfWeatherModel.locationTemperature).isEqualTo("222222222")
+        assertThat(mockOfWeatherModel.cityName).isEqualTo("aaa")
+        assertThat(mockOfWeatherModel.countryCode).isEqualTo("222222222")
     }
 }
